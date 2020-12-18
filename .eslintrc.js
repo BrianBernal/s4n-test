@@ -36,4 +36,13 @@ module.exports = {
     //  just warn unused import/var instead of error
     'no-unused-vars': ['warn', { vars: 'all', args: 'after-used', ignoreRestSiblings: false }],
   },
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: [
+          'src',
+        ],
+      },
+    },
+  },
 };
