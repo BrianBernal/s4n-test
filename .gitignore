@@ -7,6 +7,8 @@
 
 # testing
 /coverage
+.eslintcache
+.eslintcache*
 
 # production
 /build
@@ -21,3 +23,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# chrome shit
+debug.log*
+debug.log
