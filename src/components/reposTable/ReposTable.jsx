@@ -9,11 +9,15 @@ import apiService from 'API';
 
 //  styles
 import tableIcons from 'styles/tableIcons';
+import SnackBar from 'components/snackBar/SnackBar';
 import tableStyles from './styles';
+
+//  components
 
 export default function ReposTable() {
   const [reposData, setReposData] = useState([]);
   const [loadingTable, setLoadingTable] = useState(false);
+  const [errorData, setErrorData] = useState(true);
 
   useEffect(() => {
     setLoadingTable(true);
@@ -25,48 +29,53 @@ export default function ReposTable() {
           language, defaultBranch, svnUrl, name, description,
         })));
       })
-      .catch((error) => { console.log(error); })
+      .catch(() => { setErrorData(false); })
       .finally(() => { setLoadingTable(false); });
   }, []);
 
   return (
-    <MaterialTable
-      title="Repos List"
-      isLoading={loadingTable}
-      data={reposData}
-      icons={tableIcons}
-      columns={[
-        {
-          title: 'Lenguaje',
-          field: 'language',
-        },
-        {
-          title: 'Default Branch',
-          field: 'defaultBranch',
-          align: 'center',
-          headerStyle: { textAlign: 'end' },
-        },
-        {
-          title: 'URL Git',
-          field: 'svnUrl',
-          render: ({ svnUrl }) => <Link href={svnUrl} target="_blank" rel="noopener noreferrer">{svnUrl}</Link>,
-        },
-        {
-          title: 'Nombre',
-          field: 'name',
-        },
-        {
-          title: 'Descripción',
-          field: 'description',
-          cellStyle: { minWidth: 200 },
-        },
-      ]}
-      options={{
-        headerStyle: {
-          ...tableStyles.headerStyle,
-          textAlign: 'center',
-        },
-      }}
-    />
+    <>
+      <MaterialTable
+        title="Repos List"
+        isLoading={loadingTable}
+        data={reposData}
+        icons={tableIcons}
+        columns={[
+          {
+            title: 'Lenguaje',
+            field: 'language',
+          },
+          {
+            title: 'Default Branch',
+            field: 'defaultBranch',
+            align: 'center',
+            headerStyle: { textAlign: 'end' },
+          },
+          {
+            title: 'URL Git',
+            field: 'svnUrl',
+            render: ({ svnUrl }) => (
+              <Link href={svnUrl} target="_blank" rel="noopener noreferrer">{svnUrl}</Link>
+            ),
+          },
+          {
+            title: 'Nombre',
+            field: 'name',
+          },
+          {
+            title: 'Descripción',
+            field: 'description',
+            cellStyle: { minWidth: 200 },
+          },
+        ]}
+        options={{
+          headerStyle: {
+            ...tableStyles.headerStyle,
+            textAlign: 'center',
+          },
+        }}
+      />
+      <SnackBar open={errorData} setOpen={setErrorData} />
+    </>
   );
 }
