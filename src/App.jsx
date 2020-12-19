@@ -1,25 +1,21 @@
 //  libraries
 import { ThemeProvider } from '@material-ui/core/styles';
 
-//  components
-import Layout from 'components/layout/Layout';
-
 // styles
 import theme from 'styles/theme';
 import { CssBaseline } from '@material-ui/core';
-import RegisterForm from 'components/registerForm/RegisterForm';
 
-function App() {
+//  components
+import Layout from 'components/layout/Layout';
+import Home from 'views/Home';
+
+export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Layout>
-        <main>
-          <RegisterForm />
-        </main>
+        <Home />
       </Layout>
     </ThemeProvider>
   );
 }
-
-export default App;
