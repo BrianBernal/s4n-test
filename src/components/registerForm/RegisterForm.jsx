@@ -71,20 +71,24 @@ export default function RegisterForm() {
           {errors?.idCard?.message}
         </FormHelperText>
         <Controller
-          as={(
+          render={(props) => (
             <DatePicker
               label="Fecha de Nacimiento"
               inputVariant="outlined"
               format="DD/MM/YYYY"
               maxDate={moment().add(-15, 'years')}
               color="secondary"
+              value={props.value}
+              onChange={props.onChange}
+              inputRef={props.ref}
             />
-              )}
+          )}
           name="birthday"
           control={control}
           error={!!errors.birthday}
           defaultValue={null}
           rules={requiredValidator}
+          noRef
         />
         <FormHelperText className={classes.textError} error={!!errors.birthday}>
           {errors?.birthday?.message}
