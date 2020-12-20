@@ -39,6 +39,13 @@ export default function ReposTable() {
     }
   }, [githubUser]);
 
+  // Esto es innecesario. Solo lo hago para cumplir el requerimiento
+  // de los tres caracteres
+  const customSearch = (text, rowData) => {
+    if (text.length < 3) return true;
+    return rowData.name.indexOf(text) !== -1;
+  };
+
   return (
     <>
       <MaterialTable
@@ -50,16 +57,19 @@ export default function ReposTable() {
           {
             title: 'Lenguaje',
             field: 'language',
+            customFilterAndSearch: customSearch,
           },
           {
             title: 'Default Branch',
             field: 'defaultBranch',
+            customFilterAndSearch: customSearch,
             align: 'center',
             headerStyle: { textAlign: 'end' },
           },
           {
             title: 'URL Git',
             field: 'svnUrl',
+            customFilterAndSearch: customSearch,
             render: ({ svnUrl }) => (
               <Link href={svnUrl} target="_blank" rel="noopener noreferrer">{svnUrl}</Link>
             ),
@@ -73,6 +83,7 @@ export default function ReposTable() {
           {
             title: 'Nombre',
             field: 'name',
+            customFilterAndSearch: customSearch,
             cellStyle: {
               width: 137,
               maxWidth: 137,
@@ -83,6 +94,7 @@ export default function ReposTable() {
           {
             title: 'Descripción',
             field: 'description',
+            customFilterAndSearch: customSearch,
             cellStyle: {
               width: 200,
               maxWidth: 200,
