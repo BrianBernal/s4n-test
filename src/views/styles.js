@@ -5,5 +5,6 @@ export default makeStyles(() => ({
     display: 'flex',
     flexGrow: 1,
     justifyContent: 'space-around',
+    flexWrap: 'wrap',
   },
 }));

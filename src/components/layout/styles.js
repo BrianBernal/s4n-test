@@ -21,6 +21,6 @@ export default makeStyles((theme) => ({
     },
   },
   homeTitle: {
-    fontWeight: 600,
+    fontWeight: 500,
   },
 }));

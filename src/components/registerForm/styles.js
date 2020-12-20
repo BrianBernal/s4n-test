@@ -6,7 +6,7 @@ export default makeStyles(() => ({
     gridTemplateColumns: '1fr',
     gap: 10,
     maxWidth: '20rem',
-    maxHeight: '38rem',
+    maxHeight: '43rem',
   },
   button: {
     marginTop: '1rem',
@@ -14,5 +14,10 @@ export default makeStyles(() => ({
   paper: {
     height: 'max-content',
     padding: '3rem',
+    marginBottom: '2rem',
+  },
+  textError: {
+    fontStyle: 'italic',
+    marginTop: 0,
   },
 }));

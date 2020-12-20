@@ -27,7 +27,7 @@ export default function SnackBar({
         horizontal: 'right',
       }}
       open={open}
-      // autoHideDuration={6000}
+      autoHideDuration={6000}
       onClose={handleClose}
       message={message}
       action={(

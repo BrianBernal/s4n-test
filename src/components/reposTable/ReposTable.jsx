@@ -10,18 +10,18 @@ import apiService from 'API';
 //  styles
 import tableIcons from 'styles/tableIcons';
 import SnackBar from 'components/snackBar/SnackBar';
-import tableStyles from './styles';
+import { tableStyles } from './styles';
 
 //  components
 
 export default function ReposTable() {
   const [reposData, setReposData] = useState([]);
   const [loadingTable, setLoadingTable] = useState(false);
-  const [errorData, setErrorData] = useState(true);
+  const [errorData, setErrorData] = useState(false);
 
   useEffect(() => {
     setLoadingTable(true);
-    apiService.getRepos('BrianBernal')
+    apiService.getRepos('facebook')
       .then(({ data }) => {
         setReposData(data.map(({
           language, default_branch: defaultBranch, svn_url: svnUrl, name, description,
@@ -57,21 +57,41 @@ export default function ReposTable() {
             render: ({ svnUrl }) => (
               <Link href={svnUrl} target="_blank" rel="noopener noreferrer">{svnUrl}</Link>
             ),
+            cellStyle: {
+              width: 150,
+              maxWidth: 150,
+              overflowWrap: 'break-word',
+              wordWrap: 'break-word',
+            },
           },
           {
             title: 'Nombre',
             field: 'name',
+            cellStyle: {
+              width: 137,
+              maxWidth: 137,
+              overflowWrap: 'break-word',
+              wordWrap: 'break-word',
+            },
           },
           {
             title: 'Descripción',
             field: 'description',
-            cellStyle: { minWidth: 200 },
+            cellStyle: {
+              width: 200,
+              maxWidth: 200,
+              overflowWrap: 'break-word',
+              wordWrap: 'break-word',
+            },
           },
         ]}
         options={{
           headerStyle: {
             ...tableStyles.headerStyle,
-            textAlign: 'center',
+          },
+          cellStyle: {
+            overflowWrap: 'break-word',
+            wordWrap: 'break-word',
           },
         }}
       />
