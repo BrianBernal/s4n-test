@@ -1,9 +1,12 @@
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react';
+
+//  libraries
 import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
+
+//  react-redux
+import { Provider } from 'react-redux';
 import store from 'redux/store';
 
 export default function App(component) {
