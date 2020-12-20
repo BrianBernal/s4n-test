@@ -7,6 +7,10 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 //  hooks
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+
+//  redux
+import { userFormSave } from 'redux/ducks/userForm/actions';
 
 //  tools
 import { textValidator, emailValidator, numberValidator } from 'tools/formValidators';
@@ -16,10 +20,11 @@ import useStyles from './styles';
 
 export default function RegisterForm() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(userFormSave(data));
   };
 
   return (

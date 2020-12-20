@@ -8,11 +8,17 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
 
+//  hooks
+import { useSelector } from 'react-redux';
+
 //  styles
 import useStyles from './styles';
 
 export default function Layout({ children }) {
   const classes = useStyles();
+  const {
+    name = '...', lastName = '', idCard = '...', birthday = '...', email = '...', githubUser = '...',
+  } = useSelector((state) => state.userForm);
   const trigger = useScrollTrigger({ target: undefined });
 
   return (
@@ -23,19 +29,19 @@ export default function Layout({ children }) {
             <Typography variant="h4" color="primary" className={classes.homeTitle}>S4N</Typography>
             <div className={classes.userDataContainer}>
               <Typography className={classes.dataItem}>
-                Nombre: <i>Brian Bernal Hernandez</i>
+                Nombre: <i>{`${name} ${lastName}`}</i>
               </Typography>
               <Typography className={classes.dataItem}>
-                Cedula: <i>1022388215</i>
+                Cedula: <i>{idCard}</i>
               </Typography>
               <Typography className={classes.dataItem}>
-                Fecha de nacimiento: <i>27-nov-1993</i>
+                Fecha de nacimiento: <i>{birthday}</i>
               </Typography>
               <Typography className={classes.dataItem}>
-                Email: <i>brianbernal7@gmail.com</i>
+                Email: <i>{email}</i>
               </Typography>
               <Typography className={classes.dataItem}>
-                Github: <i>github.com/BrianBernal</i>
+                Github: <i>{githubUser}</i>
               </Typography>
             </div>
           </Toolbar>
