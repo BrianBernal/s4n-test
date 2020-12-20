@@ -4,16 +4,20 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import { DatePicker } from '@material-ui/pickers';
+import moment from 'moment';
 
 //  hooks
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 //  redux
 import { userFormSave } from 'redux/ducks/userForm/actions';
 
 //  tools
-import { textValidator, emailValidator, numberValidator } from 'tools/formValidators';
+import {
+  textValidator, emailValidator, numberValidator, requiredValidator,
+} from 'tools/formValidators';
 
 //  styles
 import useStyles from './styles';
@@ -21,7 +25,9 @@ import useStyles from './styles';
 export default function RegisterForm() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { register, handleSubmit, errors } = useForm();
+  const {
+    register, handleSubmit, errors, control,
+  } = useForm();
 
   const onSubmit = (data) => {
     dispatch(userFormSave(data));
@@ -64,13 +70,21 @@ export default function RegisterForm() {
         <FormHelperText className={classes.textError} error={!!errors.idCard}>
           {errors?.idCard?.message}
         </FormHelperText>
-        <TextField
-          color="secondary"
-          label="Fecha de Nacimiento"
-          variant="outlined"
+        <Controller
+          as={(
+            <DatePicker
+              label="Fecha de Nacimiento"
+              inputVariant="outlined"
+              format="DD/MM/YYYY"
+              maxDate={moment().add(-15, 'years')}
+              color="secondary"
+            />
+              )}
           name="birthday"
-          inputRef={register(textValidator())}
+          control={control}
           error={!!errors.birthday}
+          defaultValue={null}
+          rules={requiredValidator}
         />
         <FormHelperText className={classes.textError} error={!!errors.birthday}>
           {errors?.birthday?.message}

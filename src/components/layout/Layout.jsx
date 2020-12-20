@@ -1,5 +1,6 @@
 //  libraries
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -35,7 +36,7 @@ export default function Layout({ children }) {
                 Cedula: <i>{idCard}</i>
               </Typography>
               <Typography className={classes.dataItem}>
-                Fecha de nacimiento: <i>{birthday}</i>
+                Fecha de nacimiento: <i>{moment(birthday).format('MM-DD-YYYY')}</i>
               </Typography>
               <Typography className={classes.dataItem}>
                 Email: <i>{email}</i>
