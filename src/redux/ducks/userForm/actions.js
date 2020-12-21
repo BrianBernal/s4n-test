@@ -5,7 +5,6 @@ export const userFormSave = (data) => ({
   data,
 });
 
-export const userFormUpdate = (data) => ({
+export const userFormDelete = () => ({
   type: types.USER_FORM_DELETE,
-  data,
 });

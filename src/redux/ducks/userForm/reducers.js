@@ -4,7 +4,8 @@ import * as types from './types';
 const existCookie = document.cookie
   .split('; ')
   .find((row) => row.startsWith('userForm'));
-const initialState = existCookie ? JSON.parse(existCookie.split('=')[1]) : {};
+
+export const initialState = existCookie ? JSON.parse(existCookie.split('=')[1]) : {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -17,7 +18,7 @@ export default (state = initialState, action) => {
       };
 
     case types.USER_FORM_DELETE:
-      return { ...initialState };
+      return {};
 
     default:
       return state;
