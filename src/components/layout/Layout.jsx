@@ -18,7 +18,12 @@ import useStyles from './styles';
 export default function Layout({ children }) {
   const classes = useStyles();
   const {
-    name = '...', lastName = '', idCard = '...', birthday = '...', email = '...', githubUser = '...',
+    name = '...',
+    lastName = '',
+    idCard = '...',
+    birthday = '...',
+    email = '...',
+    githubUser = '...',
   } = useSelector((state) => state.userForm);
   const trigger = useScrollTrigger({ target: undefined });
 
@@ -30,19 +35,19 @@ export default function Layout({ children }) {
             <Typography variant="h4" color="primary" className={classes.homeTitle}>S4N</Typography>
             <div className={classes.userDataContainer}>
               <Typography className={classes.dataItem}>
-                Nombre: <i>{`${name} ${lastName}`}</i>
+                Nombre: <i data-testid="name">{`${name} ${lastName}`.trim()}</i>
               </Typography>
               <Typography className={classes.dataItem}>
-                Cedula: <i>{idCard}</i>
+                Cedula: <i data-testid="idCard">{idCard}</i>
               </Typography>
               <Typography className={classes.dataItem}>
-                Fecha de nacimiento: <i>{birthday === '...' ? birthday : moment(new Date(birthday)).format('MM-DD-YYYY')}</i>
+                Fecha de nacimiento: <i data-testid="birthday">{birthday === '...' ? birthday : moment(new Date(birthday)).format('MM-DD-YYYY')}</i>
               </Typography>
               <Typography className={classes.dataItem}>
-                Email: <i>{email}</i>
+                Email: <i data-testid="email">{email}</i>
               </Typography>
               <Typography className={classes.dataItem}>
-                Github: <i>{githubUser}</i>
+                Github: <i data-testid="githubUser">{githubUser}</i>
               </Typography>
             </div>
           </Toolbar>

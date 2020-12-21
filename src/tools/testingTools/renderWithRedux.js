@@ -9,7 +9,7 @@ import MomentUtils from '@date-io/moment';
 import { Provider } from 'react-redux';
 import store from 'redux/store';
 
-export default function App(component) {
+export default function RenderWithRedux(component) {
   return {
     ...render(
       <Provider store={store}>

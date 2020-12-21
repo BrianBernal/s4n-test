@@ -1,16 +1,9 @@
+import data from 'tools/testingTools/mockUser';
 import * as actions from '../actions';
 import * as types from '../types';
 
 describe('userForm actions', () => {
   it('Should create an action to add new github user', () => {
-    const data = {
-      name: 'Brian',
-      lastName: 'Bernal Hernandez',
-      idCard: '100200300',
-      birthday: '27-nov-1993',
-      email: 'brianbernal27@gmail.com',
-      gitHubUser: 'BrianBernal',
-    };
     const expectedAction = {
       type: types.USER_FORM_SAVE,
       data,
